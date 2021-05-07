@@ -11,11 +11,9 @@ interface buttonProps extends TouchableOpacityProps{
 
 export function Button({title, ...rest}:buttonProps){
     return(
-    <TouchableOpacity
-     style={styles.button}
-     {...rest}
-     >
-        <Text style={styles.buttonText}> {title}</Text>
+    <TouchableOpacity style={styles.button}>
+     
+        <Text style={styles.buttonText}>Confirmar</Text>
     </TouchableOpacity>
     )
 }
@@ -36,6 +34,7 @@ const styles =StyleSheet.create({
     buttonText:{
         color:colors.white,
         fontSize:24
+        
     }
 
 
