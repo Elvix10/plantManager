@@ -9,7 +9,6 @@ import fonts from '../styles/fonts'
 interface EnviromentButtonProps extends RectButtonProps{
     title:string
     active?:boolean
-
 }
 
 
@@ -52,7 +51,7 @@ const styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         borderRadius:12,
-        marginRight:7
+        marginHorizontal:7
     },
 
     containerActive:{
