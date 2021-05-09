@@ -1,23 +1,77 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
+
+import React, { useState } from 'react'
+import { KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button } from '../components/button'
+import { useNavigation } from '@react-navigation/core'
 import colors from '../styles/colors'
+import fonts from '../styles/fonts'
 
 
 export function UserIdentification(){
+
+    const[isFocused,setFocused]=useState(false)
+    const[isFiled,setIsFiled]=useState(false)
+    const[name,setName]=useState<string>()
+    const navigation=useNavigation()
+
+    function handleInputBlur(){
+        setFocused(false)
+        setIsFiled(!!name)
+    }
+
+    function handleInputFocus(){
+        setFocused(true)
+    }
+
+    function handleInputChange(value:string){
+        setIsFiled(true)
+        setName(value)
+    }
+
+    function handleSubmit(){
+        navigation.navigate('Confirmation')
+        console.log("11111111111111111");
+        
+    }
+
     return(
         <SafeAreaView style={styles.container}>
-            <View style={styles.content}>
-                <View style={styles.form}>
+            <KeyboardAvoidingView 
+                style={styles.container}
+                behavior={Platform.OS==='ios'?'padding':'height'}
+            >
+                <View style={styles.content}>
+                    <View style={styles.form}>
 
-                    <Text>Your Name???</Text>
+                        <Text style={styles.title}>Your Name???</Text>
 
-                    <Text style={styles.emoji}>🌝</Text>
+                        <Text style={styles.emoji}>🌝</Text>
 
-                    <TextInput style={styles.imput}/>
-                    
+                        <TextInput 
+                        style={[
+                            styles.imput,
+                            (isFocused ||isFiled)&&{borderColor:colors.green}
+                        ]}
+                        placeholder='put your name here'
+                        onBlur={handleInputBlur}
+                        onFocus={handleInputFocus}
+                        onChangeText={handleInputChange}
+                        />
+
+                        <View style={styles.footer}>
+                            <Button 
+                                title='confirmar'
+                                onPress={handleSubmit}
+                            />
+                        </View>
+
+                        <TouchableOpacity style={styles.footer}>
+
+                        </TouchableOpacity>
+                        
+                    </View>               
                 </View>
-
-            </View>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
@@ -41,6 +95,16 @@ const styles=StyleSheet.create({
         alignItems:'center'
 
     },
+
+    title:{
+        fontSize:24,
+        lineHeight:32,
+        textAlign:'center',
+        color:colors.heading,
+        fontFamily:fonts.heading,
+        marginTop:20
+
+    },
     emoji:{
         fontSize:44
     },
@@ -54,6 +118,10 @@ const styles=StyleSheet.create({
        marginTop:50,
        padding:10,
        textAlign:'center'
+    },
+
+    footer:{
+        marginTop:40
     }
 
 })
