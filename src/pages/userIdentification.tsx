@@ -29,9 +29,7 @@ export function UserIdentification(){
     }
 
     function handleSubmit(){
-        navigation.navigate('Confirmation')
-        console.log("11111111111111111");
-        
+        navigation.navigate('Confirmation')     
     }
 
     return(

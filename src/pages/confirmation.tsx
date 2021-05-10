@@ -1,12 +1,23 @@
+
 import React from 'react'
 import {  SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import { Button } from '../components/button'
+import { useNavigation } from '@react-navigation/core'
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
 
 
 
 export function Confirmation(){
+
+
+    const navigation=useNavigation()
+
+    function handleSubmit(){
+        navigation.navigate('PlantSelected')     
+    }
+
+
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
@@ -20,7 +31,7 @@ export function Confirmation(){
                     Know we will take care of your plants!!
                 </Text>
                 <View style={styles.footer}>
-                    <Button/>
+                    <Button title='start' onPress={handleSubmit}/>
                  </View>
             </View>
 
