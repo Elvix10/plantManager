@@ -9,21 +9,11 @@ import fonts from '../styles/fonts'
 import {useRoute} from '@react-navigation/core'
 import DataTimePicker ,{ Event} from '@react-native-community/datetimepicker'
 import { isBefore } from 'date-fns'
+import { PlantProps, savePlant } from '../libs/storage'
 
 
 interface Params{
-    plant:{
-        id:string
-        name:string
-        about:string
-        water_tips:string
-        photo:string
-        environments:[string]
-        frequency:{
-            times:number
-            repeat_every:string
-        }
-    }
+    plant: PlantProps
 }
 
 
@@ -48,6 +38,18 @@ export function Plantsave(){
 
         if(dateTime)
             setSelectedDataTime(dateTime)
+    }
+
+    async function handleSave(){
+        try {
+            await savePlant({
+                ...plant,
+                dateTimeNotification:selectedDateTime
+            })
+            
+        } catch  {
+            Alert.alert('Nao foi possivel Salvar')
+        }
     }
 
     return(
@@ -94,7 +96,7 @@ export function Plantsave(){
 
                     <Button
                         title='cadastrar planta'
-                        onPress={()=>{}}
+                        onPress={handleSave}
                     />
 
             </View>
