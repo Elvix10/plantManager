@@ -2,8 +2,6 @@ import React from 'react'
 import {useFonts,Jost_400Regular,Jost_600SemiBold} from '@expo-google-fonts/jost'
 import AppLoading from 'expo-app-loading'
 import Routes from './src/routes'
-import { PlantSelected } from './src/pages/plantSeleted'
-
 
 
 
@@ -19,6 +17,6 @@ export default function App(){
       return <AppLoading/>
   return(
    <Routes/>
-   //<PlantSelected/>
+   
   )
 }

@@ -15,6 +15,7 @@ export function Header(){
             const user= await AsyncStorage.getItem('@plantmanager:user')
             setUserName(user||'')
         }
+        loadStorageUsername()
     },[])
 
     return(
